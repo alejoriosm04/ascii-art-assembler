@@ -15,39 +15,37 @@ M=D   // keyboard = 24576 (base address of the keyboard)
 
 // Loop to wait for keyboard inputs
 (LOOP)
+	// Check if key 'K' is pressed
     @KBD
     D=M
-	// Check if key 'K' is pressed
     @75
     D=D-A
     @DRAW_K
     D;JEQ
 
+	// Check if key 'E' is pressed
     @KBD
     D=M
-	// Check if key 'E' is pressed
     @69
     D=D-A
     @DRAW_E
     D;JEQ
-	// More key checks...
 
+	// Check if key 'S' is pressed
     @KBD
     D=M
-	// Check if key 'S' is pressed
     @83
     D=D-A
     @DRAW_S
     D;JEQ
 	
+	// Check if key 'S' is pressed
 	@KBD
     D=M
-	// Check if key 'S' is pressed
     @65
     D=D-A
     @DRAW_A
     D;JEQ
-	// More key checks...
 
 	// If no key was pressed, repeat the loop waiting for an input
     @LOOP
@@ -544,7 +542,7 @@ M=D   // keyboard = 24576 (base address of the keyboard)
 	// First style
 	@addr
 	AD=D+M
-        // row 1
+    // row 1
 	@252 // A holds val
 	D=D+A // D = addr + val
 	A=D-A // A=addr + val - val = addr
@@ -654,11 +652,9 @@ M=D   // keyboard = 24576 (base address of the keyboard)
 	A=D-A // A=addr + val - val = addr
 	M=D-A // RAM[addr] = val
 
-
-
 	// Second style
 	D=A // D holds previous addr
-	@96
+	@128
 	AD=D+A
 	@504 // A holds val
 	D=D+A // D = addr + val
@@ -886,10 +882,8 @@ M=D   // keyboard = 24576 (base address of the keyboard)
 
 	// Second style
 	D=A // D holds previous addr
-	@184 // A holds val
-	D=D+A // D = addr + val
-	A=D-A // A=addr + val - val = addr
-	M=D-A // RAM[addr] = val
+	@128 // A holds val
+    AD=D+A
 	// row 4
 	D=A // D holds previous addr
 	@32
