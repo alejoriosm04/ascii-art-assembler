@@ -49,26 +49,10 @@ M = 0
 	@CHECK_LETTERS
 	0;JMP
 
-// Verify if we need to draw normal or inverted letter through modulus (%)
+// Verify if we need to draw normal or inverted letter
 (VERIFY)
-    @addr
-    D=M         // Load the current address from the screen (stored in memory) into register D
-    @32         // Load the value 32 into register A (32 is the divisor we will use for the modulus calculation)
-    D=D-A       // Subtract the divisor (32) from D (D = D - 32), first step in modulus calculation
-
-(MODULUS_LOOP)
-    @END_MODULUS_LOOP      // If D < 0, jump to the end of the loop since the modulus calculation is complete
-    D;JLT          // If D is negative (D < 0), jump to the label END_LOOP
-    @32            // Load 32 into register A again
-    D=D-A          // Subtract 32 from D again, continue the successive subtraction
-    @MODULUS_LOOP   // Jump back to the beginning of the loop if D is still greater than or equal to 0 (continue subtracting)
-    0;JMP          // Redundant instruction to ensure the loop repeats correctly
-
-(END_MODULUS_LOOP)
-    @32            // Load 32 into register A again
-    D=D+A          // If D was negative, restore the correct modulus by adding 32 back to D
-
-    // Here you can continue with drawing logic based on the result of the modulus
+	@count
+	D=M		       // Load the current position of the column 
     @16            // Load the value 16 into register A to compare with D
     D=D-A          // Subtract 16 from D to check if D is less than 16
     @DRAW_NORMAL_LETTER
