@@ -13,43 +13,69 @@ D=D-A
 M=D   // keyboard = 24576 (base address of the keyboard)
 
 
+// Counter initialization
+@count
+M = 0
+
 // Loop to wait for keyboard inputs
 (LOOP)
-	// Check if key 'K' is pressed
-    @KBD
-    D=M
-    @75
-    D=D-A
-    @DRAW_K
-    D;JEQ
+	// Check if a new line is necessary
+	@count
+	D=M
+	@32
+	D=D-A
+	@ADD_LINE
+	D;JEQ
 
-	// Check if key 'E' is pressed
-    @KBD
-    D=M
-    @69
-    D=D-A
-    @DRAW_E
-    D;JEQ
+	(CHECK_LETTERS)
+		// Check if key 'K' is pressed
+		@KBD
+		D=M
+		@75
+		D=D-A
+		@DRAW_K
+		D;JEQ
 
-	// Check if key 'S' is pressed
-    @KBD
-    D=M
-    @83
-    D=D-A
-    @DRAW_S
-    D;JEQ
-	
-	// Check if key 'S' is pressed
-	@KBD
-    D=M
-    @65
-    D=D-A
-    @DRAW_A
-    D;JEQ
+		// Check if key 'E' is pressed
+		@KBD
+		D=M
+		@69
+		D=D-A
+		@DRAW_E
+		D;JEQ
 
-	// If no key was pressed, repeat the loop waiting for an input
-    @LOOP
-    0;JMP
+		// Check if key 'S' is pressed
+		@KBD
+		D=M
+		@83
+		D=D-A
+		@DRAW_S
+		D;JEQ
+		
+		// Check if key 'S' is pressed
+		@KBD
+		D=M
+		@65
+		D=D-A
+		@DRAW_A
+		D;JEQ
+
+		// If no key was pressed, repeat the loop waiting for an input
+		@CHECK_LETTERS
+		0;JMP
+
+
+// Add line and reset counter.
+(ADD_LINE)
+	@count
+	M = 0
+	@1024
+	D=A
+	@addr
+	M = M + D
+	@CHECK_LETTERS
+	0;JMP
+
 
 // Memory address to draw the letter 'K' in two styles
 (DRAW_K)
@@ -283,9 +309,12 @@ M=D   // keyboard = 24576 (base address of the keyboard)
         @WAIT_RELEASE
         D;JNE
 
+	@count
+	M = M+1
+
 	// Once the key release is detected, return to the main loop to wait for a new key input
     @LOOP
-    0;JMP 
+    0;JMP
 
 (DRAW_E)
 	// First style
@@ -533,6 +562,9 @@ M=D   // keyboard = 24576 (base address of the keyboard)
         D=M
         @WAIT_RELEASE
         D;JNE
+	
+	@count
+	M = M+1
 
 	// Once the key release is detected, return to the main loop to wait for a new key input
     @LOOP
@@ -786,6 +818,9 @@ M=D   // keyboard = 24576 (base address of the keyboard)
         @WAIT_RELEASE
         D;JNE
 
+	@count
+	M = M+1
+
 	// Once the key release is detected, return to the main loop to wait for a new key input
     @LOOP
     0;JMP 
@@ -1001,6 +1036,9 @@ M=D   // keyboard = 24576 (base address of the keyboard)
         D=M
         @WAIT_RELEASE
         D;JNE
+
+	@count
+	M = M+1
 
 	// Once the key release is detected, return to the main loop to wait for a new key input
     @LOOP
