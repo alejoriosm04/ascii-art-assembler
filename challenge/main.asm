@@ -86,6 +86,14 @@ M = 0
 	@DRAW_E
 	D;JEQ
 
+	// Check if key 'S' is pressed
+	@KBD
+	D=M
+	@83
+	D=D-A
+	@DRAW_S
+	D;JEQ
+
 	// If no key was pressed, repeat the loop waiting for an input
 	@DRAW_NORMAL_LETTER
 	0;JMP
@@ -114,6 +122,14 @@ M = 0
 	@69
 	D=D-A
 	@DRAW_E_INVERTED
+	D;JEQ
+
+	// Check if key 'S' is pressed
+	@KBD
+	D=M
+	@83
+	D=D-A
+	@DRAW_S_INVERTED
 	D;JEQ
 
 	// If no key was pressed, repeat the loop waiting for an input
@@ -711,7 +727,7 @@ M = 0
 	// Second style
 	D=A // D holds previous addr
 	@128 // A holds val
-    AD=D+A
+	AD=D+A
 	// row 4
 	D=A // D holds previous addr
 	@32
@@ -960,7 +976,7 @@ M = 0
 	M=-1
 
 	// Second style
-	D=A // D holds previous addr
+	D=A // d holds previous addr
 	// row 1
 	M=-1
 	// row 2
@@ -1604,7 +1620,516 @@ M = 0
 	
 	@count
 	M = M+1
+    
 
-	// Once the key release is detected, return to the main loop to wait for a new key input
+(DRAW_S)
+    // First style
+	@addr
+	AD=D+M
+    // row 1
+	@252 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val   //WAMBI: aca hay algo  mal
+	// row 2
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@510 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 3
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@899 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 4
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@3 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 5
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@3 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 6
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@31 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 7
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@254 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 8
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@496 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 9
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@896 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 10
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@1792 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 11
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@1536 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 12
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@896 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 13
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@1023 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 14
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@254 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+
+	// Second style
+	// row 2
+	D=A // D holds previous addr
+	@128
+	AD=D+A
+	@5116 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 3
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@9990 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 4
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@15366 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 5
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@6 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 6
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@62 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 7
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@508 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 8
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@992 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 9
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@1792 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 10
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@3708 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 11
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@3142 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 12
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@1795 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 13
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@2047 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 14
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@510 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+	// row 15
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@252 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=D-A // RAM[addr] = val
+
+    // Once the drawing of the letter (2 styles) is finished, move the address pointer to the right 
+	// for the next drawing to start from the right position.
+    @addr
+    M=M+1
+    
+    // Wait for the key to be released to ensure only one drawing occurs per keypress
+    (WAIT_RELEASE)
+        @KBD
+        D=M
+        @WAIT_RELEASE
+        D;JNE
+	
+	@count
+	M = M+1
+
+(DRAW_S_INVERTED)
+	// First style
+	@addr
+	AD=D+M
+	// row 1
+	M=-1
+	// row 2
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	M=-1
+	// row 3
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@2017 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 4
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@4081 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 5
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@6201 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 6
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@57 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 7
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@57 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 8
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@241 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 9
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@2017 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 10
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@3841 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 11
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@7681 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 12
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@7173 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 13
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@7181 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 14
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@4089 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 15
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@2033 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 16
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	M=-1 
+
+	// Second style
+	D=A
+	// row 1
+	M=-1
+	// row 2
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@6145 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 3
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@13297 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 4
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@14329 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 5
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@8189 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 6
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@61 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 7
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@57 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 8
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@225 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 9
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@2017 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 10
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@3841 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 11
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@7801 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 12
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@7237 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 13
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@7181 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 14
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@8189 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 15
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@2041 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+	// row 16
+	D=A // D holds previous addr
+	@32
+	AD=D+A
+	@1009 // A holds val
+	D=D+A // D = addr + val
+	A=D-A // A=addr + val - val = addr
+	M=A-D // RAM[addr]=-val
+
+    // Once the drawing of the letter (2 styles) is finished, move the address pointer to the right 
+	// for the next drawing to start from the right position.
+    @addr
+    M=M+1
+    
+    // Wait for the key to be released to ensure only one drawing occurs per keypress
+    (WAIT_RELEASE)
+        @KBD
+        D=M
+        @WAIT_RELEASE
+        D;JNE
+	
+	@count
+	M = M+1
+
+
+
+
+
+    // Once the key release is detected, return to the main loop to wait for a new key input
     @LOOP
     0;JMP 
