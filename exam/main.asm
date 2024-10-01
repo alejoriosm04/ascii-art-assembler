@@ -65,7 +65,7 @@ M = 0
 		0;JMP
 
 
-// Add line and reset counter.
+// Add line and reset counter
 (ADD_LINE)
 	@count
 	M = 0
@@ -77,7 +77,7 @@ M = 0
 	0;JMP
 
 
-// Memory address to draw the letter 'K' in two styles
+// Draw the letter 'K' in two styles
 (DRAW_K)
 	// First style
 	@addr
@@ -309,6 +309,7 @@ M = 0
         @WAIT_RELEASE
         D;JNE
 
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -316,6 +317,7 @@ M = 0
     @LOOP
     0;JMP
 
+// Draw the letter 'E' in two styles
 (DRAW_E)
 	// First style
 	@addr
@@ -562,7 +564,8 @@ M = 0
         D=M
         @WAIT_RELEASE
         D;JNE
-	
+		
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -570,6 +573,8 @@ M = 0
     @LOOP
     0;JMP 
 
+
+// Draw the letter 'S' in two styles
 (DRAW_S)
 	// First style
 	@addr
@@ -818,6 +823,7 @@ M = 0
         @WAIT_RELEASE
         D;JNE
 
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -825,6 +831,7 @@ M = 0
     @LOOP
     0;JMP 
 
+// Draw the letter 'A' in two styles
 (DRAW_A)
 	// First style
 	@addr
@@ -1037,6 +1044,7 @@ M = 0
         @WAIT_RELEASE
         D;JNE
 
+	// Update counter with new current column
 	@count
 	M = M+1
 

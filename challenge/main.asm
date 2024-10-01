@@ -136,7 +136,7 @@ M = 0
 	@DRAW_INVERTED_LETTER
 	0;JMP
 
-// Memory address to draw the letter 'K' in two styles
+// Draw the letter 'K' in two styles
 (DRAW_K)
 	// First style
 	@addr
@@ -368,6 +368,7 @@ M = 0
         @WAIT_RELEASE
         D;JNE
 
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -375,7 +376,7 @@ M = 0
     @LOOP
     0;JMP
 
-// Memory address to draw the letter 'K' in two styles inverted
+// Draw the letter 'K' in two styles inverted
 (DRAW_K_INVERTED)
 	// First style
 	@addr
@@ -626,6 +627,7 @@ M = 0
         @WAIT_RELEASE
         D;JNE
 
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -633,7 +635,7 @@ M = 0
     @LOOP
     0;JMP
 
-// Memory address to draw the letter 'A' in two styles
+// Draw the letter 'A' in two styles
 (DRAW_A)
 	// First style
 	@addr
@@ -846,6 +848,7 @@ M = 0
         @WAIT_RELEASE
         D;JNE
 
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -853,7 +856,7 @@ M = 0
     @LOOP
     0;JMP 
 
-// Memory address to draw the letter 'A' in two styles inverted
+// Draw the letter 'A' in two styles inverted
 (DRAW_A_INVERTED)
 	// First style
 	@addr
@@ -1107,7 +1110,8 @@ M = 0
         D=M
         @WAIT_RELEASE
         D;JNE
-
+	
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -1115,6 +1119,7 @@ M = 0
     @LOOP
     0;JMP
 
+// Draw the letter 'E' in two styles
 (DRAW_E)
 	// First style
 	@addr
@@ -1353,7 +1358,8 @@ M = 0
         D=M
         @WAIT_RELEASE
         D;JNE
-	
+
+	// Update counter with new current column
 	@count
 	M = M+1
 
@@ -1361,7 +1367,7 @@ M = 0
     @LOOP
     0;JMP 
 
-
+// Draw the letter 'E' in two styles inverted
 (DRAW_E_INVERTED)
 	// First style
 	@addr
@@ -1617,11 +1623,16 @@ M = 0
         D=M
         @WAIT_RELEASE
         D;JNE
-	
+
+	// Update counter with new current column
 	@count
 	M = M+1
-    
 
+	// Once the key release is detected, return to the main loop to wait for a new key input
+    @LOOP
+    0;JMP 
+    
+// Draw the letter 'S' in two styles
 (DRAW_S)
     // First style
 	@addr
@@ -1854,6 +1865,7 @@ M = 0
 	// for the next drawing to start from the right position.
     @addr
     M=M+1
+
     
     // Wait for the key to be released to ensure only one drawing occurs per keypress
     (WAIT_RELEASE)
@@ -1861,10 +1873,16 @@ M = 0
         D=M
         @WAIT_RELEASE
         D;JNE
-	
+
+	// Update counter with new current column
 	@count
 	M = M+1
 
+	// Once the key release is detected, return to the main loop to wait for a new key input
+    @LOOP
+    0;JMP 
+	
+// Draw the letter 'S' in two styles inverted
 (DRAW_S_INVERTED)
 	// First style
 	@addr
@@ -2122,13 +2140,10 @@ M = 0
         D=M
         @WAIT_RELEASE
         D;JNE
-	
+
+	// Update counter with new current column
 	@count
 	M = M+1
-
-
-
-
 
     // Once the key release is detected, return to the main loop to wait for a new key input
     @LOOP
