@@ -52,7 +52,7 @@ M = 0
 		@DRAW_S
 		D;JEQ
 		
-		// Check if key 'S' is pressed
+		// Check if key 'A' is pressed
 		@KBD
 		D=M
 		@65
